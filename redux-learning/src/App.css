@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+/* custome css */
+.container {
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 20px; 
+}
+
+.heading {
+  font-size: 20px;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-weight: bold;
+  color: darkblue;
+  padding: 40px 0px;
+}
+
+.action {
+  width: 100px;
+  display: flex;
+  justify-content: space-between;
+}
