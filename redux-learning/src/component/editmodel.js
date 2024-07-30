@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Model = () => {
+const EditModel = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
 
     const openModal = () => {
@@ -101,4 +101,4 @@ const Model = () => {
     );
 };
 
-export default Model;
+export default EditModel;
