@@ -18,7 +18,7 @@ const Model = () => {
         setIsModalOpen(false);
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit =  (e) => {
         e.preventDefault();
 
         const payload = {
@@ -28,7 +28,7 @@ const Model = () => {
             priority
         }
         console.log(payload);
-        await dispatch(createTodo(payload));
+        dispatch(createTodo(payload));
         closeModal();
     }
 
@@ -64,11 +64,11 @@ const Model = () => {
                             </div>
                             
                             <div className="p-4 md:p-5">
-                                <htmlForm className="space-y-4" action="#" onSubmit={handleSubmit}>
+                                <form className="space-y-4" action="#" onSubmit={handleSubmit}>
                                     <div>
-                                        <label htmlhtmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+                                        <label htmlFor="title" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
                                         <input 
-                                            type="title" 
+                                            type="text" 
                                             name="title" 
                                             id="title" 
                                             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white" 
@@ -79,9 +79,9 @@ const Model = () => {
                                         />
                                     </div>
                                     <div>
-                                        <label htmlhtmlFor="Description" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
+                                        <label htmlFor="Description" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                                         <input 
-                                            type="description" 
+                                            type="text" 
                                             name="description" 
                                             id="description" 
                                             placeholder="Description" 
@@ -92,33 +92,29 @@ const Model = () => {
                                         />
                                     </div>
                         
-                                    <htmlForm className="max-w-sm mx-auto">
                                     <label htmlFor="small" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
                                     <select id="small" value={status}
                                         onChange={(e) => setStatus(e.target.value)} className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected>Choose status</option>
-                                        <option value="US"></option>
-                                        <option value="CA">Low</option>
-                                        <option value="FR">Medium</option>
-                                        <option value="DE">High</option>
-                                    </select>
-                                    <label htmlFor="default" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Priority</label>
-                                    <select id="default"  value={priority}
-                                        onChange={(e) => setStatus(e.target.value)}className="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                        <option selected>Choose priority</option>
+                                        <option value="" disabled>Choose status</option>
                                         <option value="US">Pending</option>
                                         <option value="CA">Progress</option>
                                         <option value="FR">Done</option>
                                     </select>
-                                    </htmlForm>
-
+                                    <label htmlFor="default" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Priority</label>
+                                    <select id="default"  value={priority}
+                                        onChange={(e) => setPrority(e.target.value)}className="bg-gray-50 border border-gray-300 text-gray-900 mb-6 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <option value="" disabled>Choose priority</option>
+                                        <option value="CA">Low</option>
+                                        <option value="FR">Medium</option>
+                                        <option value="DE">High</option>
+                                    </select>
 
                                     <button 
                                         type="submit" 
                                         className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         Submit
                                     </button>
-                                </htmlForm>
+                                </form>
                             </div>
                         </div>
                     </div>

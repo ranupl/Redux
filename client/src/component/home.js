@@ -2,7 +2,6 @@ import React, {useEffect} from  "react";
 import EditModel from "./editmodel";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTodos } from "../redux/slice/get.todo.slice";
-import { use } from "react";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -50,12 +49,11 @@ const Home = () => {
                         </tr>
                     ) : (
                         todos && todos.data.map((todo) => (
-                            <tr key={todo.id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                            <tr key={todo._id} className="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                     {todo._id}
                                 </th>
                                 <td className="px-6 py-4">{todo.title}</td>
-                                <td className="px-6 py-4">{todo.description}</td>
                                 <td className="px-6 py-4">{todo.status}</td>
                                 <td className="px-6 py-4">{todo.priority}</td>
                                 <td className="px-6 py-4">

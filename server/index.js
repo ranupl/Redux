@@ -2,9 +2,11 @@ const express = require("express");
 const app = express();
 const DBconnect = require("./src/db/connection");
 const todoRouter = require("./src/routes/todoroute");
+const cors = require('cors');
 
 const PORT = 3004;
 
+app.use(cors()); 
 app.use(express.json());
 DBconnect();
 
