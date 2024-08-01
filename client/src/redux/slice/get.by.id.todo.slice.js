@@ -1,31 +1,32 @@
 import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
-import { addTodoApi } from "../../api/addTodo";
+import { getTodoByIdApi } from "../../api/getTodoById";
 
-export const addTodo = createAsyncThunk("addTodo", async (payload) => {
-    const response = await addTodoApi(payload);
-    return response;
+export const getTodo = createAsyncThunk("getTodo", async (_id) => {
+    const response = await getTodoByIdApi(_id);
+    return response.data; 
 });
 
+
 const todoSlice = createSlice({
-    name : "todo",
+    name : "singletodo",
     initialState : {
         isLoading : false,
         data : null,
         error : false
     },
     extraReducers: (builder) => {
-        builder.addCase(addTodo.pending, (state, action) => {
+        builder.addCase(getTodo.pending, (state, action) => {
             state.isLoading = true;
         })
-        builder.addCase(addTodo.fulfilled, (state , action) => {
+        builder.addCase(getTodo.fulfilled, (state , action) => {
             state.isLoading = false;
             state.data = action.payload;
         })
-        builder.addCase(addTodo.rejected, (state, action) => {
+        builder.addCase(getTodo.rejected, (state, action) => {
             state.error = true;
             console.log("error while fetching todos");
         })
     }
 });
 
-export const createTodo = todoSlice.reducer;
+export const getTodoById = todoSlice.reducer;

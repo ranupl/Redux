@@ -2,6 +2,7 @@ import React, {useEffect} from  "react";
 import EditModel from "./editmodel";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTodos } from "../redux/slice/get.todo.slice";
+import { deleteTodos } from "../redux/slice/delete.todo.slice";
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -11,7 +12,10 @@ const Home = () => {
     }, [dispatch]);
 
     const { data: todos, isLoading, error } = useSelector((state) => state.todo);
-    console.log(todos, "todos")
+
+    const handleDelete = (_id) => {
+        dispatch(deleteTodos(_id));
+    }
 
     return (
         <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -54,16 +58,17 @@ const Home = () => {
                                     {todo._id}
                                 </th>
                                 <td className="px-6 py-4">{todo.title}</td>
+                                <td className="px-6 py-4">{todo.description}</td>
                                 <td className="px-6 py-4">{todo.status}</td>
                                 <td className="px-6 py-4">{todo.priority}</td>
                                 <td className="px-6 py-4">
                                     <div className="action">
-                                        <EditModel />
+                                        <EditModel _id={todo._id} />
                                         <button
                                             className="block text-white bg-blue-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 mb-5"
-                                            type="button"
+                                            type="button" onClick={() => handleDelete(todo._id)}
                                         >
-                                            Delete
+                                            Delete 
                                         </button>
                                     </div>
                                 </td>

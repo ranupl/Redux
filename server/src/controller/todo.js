@@ -29,6 +29,17 @@ const getAllTodo = async (req, res) => {
     }
 }
 
+const getTodoById = async (req, res) => {
+    try {
+        const { _id } = req.params;
+        const getTask = await TodoDB.findOne({_id: _id});
+        res.status(200).json({status : 200, data : getTask});
+    } catch(error){
+        console.log(error);
+        res.status(500).json({ status: 500, message: "Error adding task" });
+    }
+}
+
 const updateTodo = async (req, res) => {
     try {
         const { _id } = req.params; 
@@ -61,6 +72,7 @@ const deleteTodo = async (req, res) => {
 module.exports = {
     addTodo,
     getAllTodo,
+    getTodoById,
     updateTodo,
     deleteTodo
 }

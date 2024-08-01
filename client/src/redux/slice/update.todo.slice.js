@@ -1,14 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { addTodoApi } from "../../api/addTodo";
+import { updateTodoApi } from "../../api/updateTodo";
 
-export const addTodo = createAsyncThunk("addTodo", async (payload) => {
-    const response = await addTodoApi(payload);
+export const editTodo = createAsyncThunk("editTodo", async ({_id, formdata}) => {
+    const response = await updateTodoApi(_id, formdata);
     return response.data; 
 });
 
 
 const todoSlice = createSlice({
-    name: "createTodo",
+    name: "updatedtodo",
     initialState: {
         isLoading: false,
         data: [],
@@ -16,16 +16,16 @@ const todoSlice = createSlice({
         success : false
     },
     extraReducers: (builder) => {
-        builder.addCase(addTodo.pending, (state) => {
+        builder.addCase(editTodo.pending, (state) => {
             state.isLoading = true;
             state.success = false;
         });
-        builder.addCase(addTodo.fulfilled, (state, action) => {
+        builder.addCase(editTodo.fulfilled, (state, action) => {
             state.isLoading = false;
             state.data.push(action.payload);
             state.success = true;
         });
-        builder.addCase(addTodo.rejected, (state, action) => {
+        builder.addCase(editTodo.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error.message;
             state.success = false;
@@ -33,4 +33,4 @@ const todoSlice = createSlice({
     }
 });
 
-export const createTodo = todoSlice.reducer;
+export const updateTodo = todoSlice.reducer;

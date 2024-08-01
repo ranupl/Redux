@@ -3,19 +3,17 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Provider } from "react-redux";
-import {store } from "./redux/store";
+import { Provider } from 'react-redux';
+import { store } from './redux/store';
+import { BrowserRouter as Router } from 'react-router-dom'; // Import BrowserRouter
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-    <App />
+      <Router> {/* Wrap your App component with BrowserRouter */}
+        <App />
+      </Router>
     </Provider>
   </React.StrictMode>
 );
-
-// If you want to start measuring perhtmlFormance in your app, pass a function
-// to log results (htmlFor example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

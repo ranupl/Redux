@@ -1,10 +1,11 @@
 import { createSlice , createAsyncThunk } from "@reduxjs/toolkit";
+import { getTodoApi } from "../../api/getTodo";
 
-export const fetchTodos = createAsyncThunk("fetchTodos", async () => {
-    const response = await fetch("http://localhost:3004/api/todos/getAllTodo");
-    const data = await response.json(); 
-    return data;
+export const fetchTodos = createAsyncThunk("fetchTodos", async (payload) => {
+    const response = await getTodoApi(payload);
+    return response.data; 
 });
+
 
 const todoSlice = createSlice({
     name : "todo",
